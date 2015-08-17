@@ -1,0 +1,170 @@
+# Maintainer: Zavon J <zavon at zavon.org>
+# Contributor: Charles Bos <charlesbos1 AT gmail>
+# Contributor: Xiao-Long Chen <chenxiaolong@cxl.epac.to>
+
+pkgname=unity
+_actual_ver=7.3.1
+_extra_ver=+14.10.20140811
+_ubuntu_rel=0ubuntu1
+_source_date=20140811
+pkgver=${_actual_ver}.${_source_date}
+pkgrel=1
+
+pkgdesc="A desktop experience designed for efficiency of space and interaction"
+arch=('i686' 'x86_64')
+url="https://launchpad.net/unity"
+license=('GPL')
+depends=('bamf' 'boost' 'cairo-ubuntu' 'compiz-ubuntu>=0.9.11' 'clutter-gtk' 'gjs' 'gnome-desktop' 'gnome-screensaver-ubuntu' 'gnome-session-ubuntu' 'gnome-settings-daemon-ubuntu' 'hud-bzr' 'ido-bzr' 'libgnomeui' 'libindicator-bzr' 'libnotify' 'libunique' 'libunity' 'libunity-misc-bzr' 'libxfixes' 'nux>=4.0.6' 'unity-asset-pool' 'unity-scope-home' 'libxi' 'xpathselect-bzr' 'zeitgeist-ubuntu' 'lightdm-unity-greeter')
+makedepends=('chrpath' 'cmake' 'doxygen' 'intltool' 'patchutils' 'pkg-config' 'python2-distribute')
+groups=('unity')
+provides=("unity-core=${_actual_ver}")
+conflicts=('unity-core')
+optdepends=('gnome-control-center-ubuntu: The Control Center for GNOME with Ubuntu patches'
+            'indicator-application-bzr: take menus from applications and place them in the panel'
+            'indicator-appmenu-bzr: host the menus from an application'
+            'indicator-bluetooth: Bluetooth menu'
+            'indicator-datetime: a very, very simple clock'
+            'indicator-messages: a place on the users desktop that collects messages that need a response'
+            'indicator-power: show the power status of your devices'
+            'indicator-printers: show active print jobs'
+            'indicator-session: Indicator showing session management, status and user switching'
+            'indicator-sound: a unified sound menu'
+            'nautilus-ubuntu: The GNOME file manager with Ubuntu patches'
+            'network-manager-applet-ubuntu: GNOME frontends to NetWorkmanager with Ubuntu patches'
+            'notify-osd: The desktop notification system from Canonical'
+            'ubuntu-themes: Ubuntu monochrome icon theme, Ambiance and Radiance themes, and Ubuntu artwork'
+            'unity-lens-applications-bzr: Exposes your applications with their usage statistics and status to Unity'
+            'unity-lens-files: exposing your files and file history'
+            'unity-lens-music: music, in the dash'
+            'unity-lens-photos: all your photos, in the Dash'
+            'unity-lens-video: lens for Unity to search local and remote videos'
+            'unity-scope-home: Home scope that aggregates results from multiple scopes'
+            'unity-scopes: Online scopes for the Unity Dash')
+install=unity.install
+source=("https://launchpad.net/ubuntu/+archive/primary/+files/unity_${_actual_ver}${_extra_ver}.orig.tar.gz"
+        "https://launchpad.net/ubuntu/+archive/primary/+files/unity_${_actual_ver}${_extra_ver}-${_ubuntu_rel}.diff.gz"
+        '0001-Disable-tests.patch'
+        '0002-Arch-Linux-branding.patch'
+        '0003-Revert-r3134-Remove-Systray-Whitelist.patch'
+        '0004-Disable-Werror.patch'
+        '0005-Fix-launchers.patch'
+        '0006-Remove-Upstart-stuff.patch'
+        '0007-Remove-social.scope.patch'
+        'com.ubuntu.user-interface.gschema.xml'
+        'launcher_bfb.png'
+        '10_unity.gschema.override'
+        '99unity-panel-service'
+        'unity-debug')
+sha512sums=('8b4a6ff0740cf316eac75fdf86acf78e0af53c4d90bb282806795983276cac810480b5679b3a9fd1cb7fa1aee23a8e9b0ab2eb10240455a6a7b21dc045b1a09c'
+            'a5ced1b0fdc174960937607023b66463cf0bf4b80d7f5ac049265890824f2ac07996741eafb0c93062a73c1d22cfd3c5c8296781b3313de0b85e32ff03d99c10'
+            '2dcc95a763a610c03c6c8a5d050d3b41c6869b889fe2298949803b96080fd9724fae25456eede0e904826ac36d1134d55e4761480d1765e31d308d96cc6637ec'
+            '1b7f48bb278db760948f23eda6de630eb566421e8c91d2088570ff56ddf521757c7238522f0df23edec8e09d75eb2ce2720df001c70f43e15b3a3757d3b2781b'
+            'ef6b2c3e77e7b57c020aa8a8fa83d386aa254cb29ad0c2c360c863da160f770a52dad4c70216a4cb6333a0a3fafb287a43500b8cfc82c9b1bae792b50a34b6a1'
+            'f46293b741cc140510d0f62a87fcd7582d709bdde40ed660857f98010204f4b11cc7eb232643f3b0b0d8a8b23c45eb97df7eb3ba1df13fc4dac249bf16c515e8'
+            'd777370f6e4ee645d7737b327fd893e16336da46e1c24ab9af17d386d3ed100a79b262b51011611d6f26d186cf58e4991d64edd02b9556347a0ec021bcc3ed89'
+            'c64157a5d064b42da2b9750a5c8dc9745e6ea78abf7d6b5f09ca38e25f5ba897cdec4a21ad253243a243d674d6cd7e43b50c32c710d7687a2ac3bff448f253a3'
+            '50f95f2745e8ae41dc47714a02988b70ab055b1578647a430c85dd8bc9d6edf4f4d689e5f411b8195b8c81f3921c9a06b6a96f3ad9e56545c0860479d5217d07'
+            '126ed309012d60ef51da95b115d877f65c8f8dee415be781ad9f6c0efedc5639227f72218d9c790f5d00937378ba62691d0d29fd9ac757d75dd156fd4f4b7eba'
+            'ec9ea91d79129b23aae6c4b9584fb396ecc572a0bafcac6229cc413ee441f610cb51ffce9383544c9fc62e747d5718be9be050850943eac4820095f190dc0ed0'
+            '872c48f85350d2d815418afab340946f85ec1f9f3e1ab748fc1199df342df52642447736a5b783fb17eb324a961bbf8badc4e8401512e7182e4ff2e25b53d3a1'
+            '5bd357e03392c6abf76b51df78e59eafb1f04e997465fe1b73c02a8e265306b020bbdb05e66d959fb44a3df1aaf24559d70289aedf6803c917ca689ec848bf66'
+            'b217490bf5eb5b0e83dbc9737b80b2ab9d7288362f370625f3c99d5a862c0e1947376b9fab4fdc9c2ddd4e8bd6e8d2ff5763a3a4391732f0781abbc60b159db5')
+
+prepare() {
+  cd "${srcdir}/${pkgname}-${_actual_ver}${_extra_ver}"
+
+  patch -p1 -i "${srcdir}/0001-Disable-tests.patch"
+  patch -p1 -i "${srcdir}/0002-Arch-Linux-branding.patch"
+  patch -p1 -i "${srcdir}/0003-Revert-r3134-Remove-Systray-Whitelist.patch"
+  patch -p1 -i "${srcdir}/0004-Disable-Werror.patch"
+  patch -p1 -i "${srcdir}/0005-Fix-launchers.patch"
+  patch -p1 -i "${srcdir}/0006-Remove-Upstart-stuff.patch"
+  patch -p1 -i "${srcdir}/0007-Remove-social.scope.patch"
+
+  # Apply Ubuntu patches
+  patch -p1 -i "${srcdir}/unity_${_actual_ver}${_extra_ver}-${_ubuntu_rel}.diff"
+  for i in $(grep -v '#' debian/patches/series); do
+    patch -p1 -i "debian/patches/${i}"
+  done
+}
+
+build() {
+  cd "${srcdir}/${pkgname}-${_actual_ver}${_extra_ver}"
+
+  # (From debian/rules) http://ccache.samba.org/manual.html#_precompiled_headers
+  export CCACHE_SLOPPINESS=time_macros
+
+  [[ -d build ]] && rm -rvf build/
+  mkdir build/ && cd build/
+
+  cmake -Wno-dev \
+    -DCOMPIZ_BUILD_WITH_RPATH=FALSE \
+    -DCOMPIZ_PACKAGING_ENABLED=TRUE \
+    -DCOMPIZ_PLUGIN_INSTALL_TYPE=package \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DUSE_GSETTINGS=TRUE \
+    ..
+
+  make -j1
+
+  # Make sure that the GSettings schema files were created
+  pushd generated/glib-2.0/schemas/
+  if \
+    [ ! -f org.compiz.networkarearegion.gschema.xml ] || \
+    [ ! -f org.compiz.unitydialog.gschema.xml ] || \
+    [ ! -f org.compiz.unitymtgrabhandles.gschema.xml ] ||
+    [ ! -f org.compiz.unityshell.gschema.xml ]; then
+    make compiz_gsettings_compile_local
+  fi
+  popd
+}
+
+package() {
+  cd "${srcdir}/${pkgname}-${_actual_ver}${_extra_ver}/build"
+  make DESTDIR="${pkgdir}/" install
+
+  # Install profile convert files
+  install -dm755 "${pkgdir}/usr/lib/compiz/migration/"
+  install -m644 ../tools/convert-files/* "${pkgdir}/usr/lib/compiz/migration/"
+
+  # Taken from Ubuntu source package's debian/rules file
+  find "${pkgdir}/usr/lib" -name \*.*a -exec rm {} \;
+  rm -vf "${pkgdir}/usr/share/compiz/networkarearegion.xml"
+  rm -vf "${pkgdir}/usr/lib/compiz/libnetworkarearegion.so"
+  rm -vf "${pkgdir}/usr/share/compiz/unitydialog.xml"
+  rm -vf "${pkgdir}/usr/lib/compiz/libunitydialog.so"
+
+  # Fix Python 2 scripts
+  sed -i 's|^\(#!.*python$\)|\12|g' \
+    "${pkgdir}/usr/bin/unity" \
+    "${pkgdir}/usr/lib/unity/makebootchart.py"
+
+  # Arch Linux logo
+  install -m644 "${srcdir}/launcher_bfb.png" \
+    "${pkgdir}/usr/share/unity/icons/launcher_bfb.png"
+
+  # Change window dragging key back to Alt. Super conflicts with Unity's other
+  # hotkeys.
+  install -m644 "${srcdir}/10_unity.gschema.override" \
+    "${pkgdir}/usr/share/glib-2.0/schemas/"
+
+  install -m644 "${srcdir}/com.ubuntu.user-interface.gschema.xml" \
+    "${pkgdir}/usr/share/glib-2.0/schemas/"
+
+  # Fix launching of unity-panel-service (from unity-gentoo project)
+  install -dm755 "${pkgdir}/etc/X11/xinit/xinitrc.d/"
+  install -m755 "${srcdir}/99unity-panel-service" \
+                "${pkgdir}/etc/X11/xinit/xinitrc.d/"
+
+  # Install script for running Unity with debug output (from unity-gentoo project)
+  install -m755 "${srcdir}/unity-debug" "${pkgdir}/usr/bin/"
+
+  # Use language packs
+  rm -r "${pkgdir}/usr/share/locale/"
+
+  # Fix insecure rpath in libunityshell.so
+  chrpath --replace /usr/lib/compiz "$pkgdir/usr/lib/compiz/libunityshell.so"
+}
+
+# vim:set ts=2 sw=2 et:
